@@ -1,4 +1,4 @@
-# BookFusion 📚
+# BookNookCorner 📚
 
 A hybrid book recommender system combining **content-based filtering** and
 **collaborative filtering** on the Book-Crossing dataset. Built as part of a
@@ -8,7 +8,7 @@ university research project on Data Analysis and Data Mining.
 
 Reading platforms and libraries hold rich but underused signals — ratings, reading
 history, favorite authors and genres — that can be turned into personalized book
-suggestions. BookFusion explores whether combining two classic recommendation
+suggestions. BookNookCorner explores whether combining two classic recommendation
 strategies produces better suggestions than either strategy alone:
 
 - **Content-based filtering** recommends books similar to ones a user already liked,
@@ -48,7 +48,7 @@ See [`data/README.md`](data/README.md) for full details and download instruction
 ## Project Structure
 
 ```
-BookFusion/
+BookNookCorner/
 │
 ├── data/
 │   └── README.md              # dataset info (raw CSVs not included, see below)
@@ -71,8 +71,8 @@ BookFusion/
 
 1. Clone the repo and install dependencies:
    ```bash
-   git clone https://github.com/<your-username>/BookFusion.git
-   cd BookFusion
+   git clone https://github.com/SenaDok/BookNookCorner.git
+   cd BookNookCorner
    pip install -r requirements.txt
    ```
 
@@ -119,4 +119,4 @@ not a defect of the model.
 
 ## License
 
-For academic use as part of a Data Analysis and Data Mining course project.
+For academic use only as part of my Data Analysis and Data Mining course project.
