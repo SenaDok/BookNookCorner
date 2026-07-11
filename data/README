@@ -1,0 +1,36 @@
+# Dataset
+
+This project uses the **Book-Crossing Dataset**, a widely used benchmark dataset for
+recommender systems research, collected by Cai-Nicolas Ziegler from the Book-Crossing
+community (bookcrossing.com).
+
+CSV files are **not included in this repository** due to their size (~120 MB total).
+Download them yourself and place them in this `data/` folder before running the scripts.
+
+## Files required
+
+| File | Description | Rows (raw) |
+|---|---|---|
+| `BX_Books.csv` | Book metadata: ISBN, title, author, year, publisher | ~271,000 |
+| `BX-Users.csv` | User demographics: user ID, location, age | ~279,000 |
+| `BX-Book-Ratings.csv` | User ratings: user ID, ISBN, rating (0–10) | ~1,150,000 |
+
+## Where to get it
+
+The dataset is publicly available from several mirrors, including:
+- http://www2.informatik.uni-freiburg.de/~cziegler/BX/
+- Kaggle: search "Book-Crossing Dataset"
+
+## Format notes
+
+- Delimiter: `;` (semicolon), fields quoted with `"`
+- Encoding: `latin-1` (ISO-8859-1)
+- Ratings of `0` are **implicit** (the user interacted with the book but left no
+  explicit score) rather than a real preference score of zero. The pipeline filters
+  these out before training the collaborative filtering model.
+
+## After cleaning
+
+`src/02_clean.py` outputs three cleaned CSVs into this same folder:
+`books_clean.csv`, `users_clean.csv`, `ratings_clean.csv`. These are also excluded
+from version control — regenerate them locally by running the pipeline.
