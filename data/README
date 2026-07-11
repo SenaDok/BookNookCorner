@@ -1,36 +1,63 @@
 # Dataset
 
-This project uses the **Book-Crossing Dataset**, a widely used benchmark dataset for
-recommender systems research, collected by Cai-Nicolas Ziegler from the Book-Crossing
-community (bookcrossing.com).
+This project uses the **Book-Crossing Dataset** to develop a hybrid book recommendation system combining Content-Based Filtering and Collaborative Filtering.
 
-CSV files are **not included in this repository** due to their size (~120 MB total).
-Download them yourself and place them in this `data/` folder before running the scripts.
+The dataset contains anonymized user information, book metadata, and user-book rating interactions. It was originally collected by Cai-Nicolas Ziegler from the Book-Crossing online community and is widely used for recommender system research.
 
-## Files required
+The dataset contains:
+
+- **278,858 users**
+- **271,379 books**
+- **1,149,780 ratings**
+
+## Dataset Files
+
+The Book-Crossing dataset consists of three main CSV files:
 
 | File | Description | Rows (raw) |
 |---|---|---|
-| `BX_Books.csv` | Book metadata: ISBN, title, author, year, publisher | ~271,000 |
-| `BX-Users.csv` | User demographics: user ID, location, age | ~279,000 |
-| `BX-Book-Ratings.csv` | User ratings: user ID, ISBN, rating (0–10) | ~1,150,000 |
+| `BX-Books.csv` | Book metadata including ISBN, title, author, publication year, publisher, and cover image links | ~271,000 |
+| `BX-Users.csv` | User information including anonymized User-ID, location, and age (when available) | ~279,000 |
+| `BX-Book-Ratings.csv` | User-book interactions containing User-ID, ISBN, and ratings from 0–10 | ~1,150,000 |
 
-## Where to get it
+## Dataset Source
 
-The dataset is publicly available from several mirrors, including:
-- http://www2.informatik.uni-freiburg.de/~cziegler/BX/
-- Kaggle: search "Book-Crossing Dataset"
+The dataset used in this project was obtained from Kaggle:
 
-## Format notes
+https://www.kaggle.com/code/ruchi798/book-crossing-starter-notebook-and-eda/notebook
 
-- Delimiter: `;` (semicolon), fields quoted with `"`
+The Kaggle version is based on the original Book-Crossing Dataset collected by:
+
+Ziegler, C.-N., McNee, S. M., Konstan, J. A., & Lausen, G. (2005).  
+*Improving Recommendation Lists Through Topic Diversification.*  
+Proceedings of the 14th International World Wide Web Conference (WWW '05).
+
+Original dataset source:
+http://www2.informatik.uni-freiburg.de/~cziegler/BX/
+
+## Dataset Availability
+
+The CSV files are **not included in this repository** because of their size (~120 MB total). GitHub has file size limitations, and storing large datasets directly in the repository is not recommended.
+
+To run this project:
+
+1. Download the dataset files.
+2. Place the CSV files inside this `data/` folder.
+3. Run the preprocessing and recommendation scripts.
+
+## Format Notes
+
+- Delimiter: `;` (semicolon)
+- Text fields are enclosed with quotation marks (`"`)
 - Encoding: `latin-1` (ISO-8859-1)
-- Ratings of `0` are **implicit** (the user interacted with the book but left no
-  explicit score) rather than a real preference score of zero. The pipeline filters
-  these out before training the collaborative filtering model.
 
-## After cleaning
+The `BX-Book-Ratings.csv` file contains two types of ratings:
 
-`src/02_clean.py` outputs three cleaned CSVs into this same folder:
-`books_clean.csv`, `users_clean.csv`, `ratings_clean.csv`. These are also excluded
-from version control — regenerate them locally by running the pipeline.
+- **Explicit ratings:** Values from 1–10 where users provided a rating.
+- **Implicit interactions:** Value `0`, meaning the user interacted with a book but did not provide an explicit rating.
+
+The preprocessing pipeline removes implicit ratings before training the collaborative filtering model.
+
+## Generated Files
+
+The preprocessing script:
