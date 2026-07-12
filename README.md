@@ -1,13 +1,13 @@
 # BookNookCorner 📚
 
-A hybrid book recommender system combining **content-based filtering** and
+A hybrid book recommender system combining **content based filtering** and
 **collaborative filtering** on the Book-Crossing dataset. Built as part of a
 university research project on Data Analysis and Data Mining.
 
 ## Project Purpose
 
-Reading platforms and libraries hold rich but underused signals — ratings, reading
-history, favorite authors and genres — that can be turned into personalized book
+Reading platforms and libraries hold rich but underused signal ratings, reading
+history, favorite authors and genres that can be turned into personalized book
 suggestions. BookNookCorner explores whether combining two classic recommendation
 strategies produces better suggestions than either strategy alone:
 
@@ -16,8 +16,8 @@ strategies produces better suggestions than either strategy alone:
 - **Collaborative filtering** recommends books liked by *other users with similar
   taste*, learned from the user–item rating matrix.
 - **Hybrid model**: a weighted blend of both (`alpha` controls the mix), aiming to
-  reduce each method's individual weaknesses — content-based filtering's tendency
-  to recommend only near-identical items, and collaborative filtering's cold-start
+  reduce each method's individual weaknesses, content based filtering's tendency
+  to recommend only near identical items, and collaborative filtering's cold-start
   problem for users/books with few ratings.
 
 **Target users**: avid readers, students, and library patrons looking for
@@ -27,7 +27,7 @@ personalized reading suggestions.
 
 ## Dataset Used
 
-[Book-Crossing Dataset](http://www2.informatik.uni-freiburg.de/~cziegler/BX/) — real-world
+[Book-Crossing Dataset](http://www2.informatik.uni-freiburg.de/~cziegler/BX/) real world
 book ratings collected from the Book-Crossing community.
 
 - ~271K books, ~279K users, ~1.15M ratings (raw)
@@ -42,7 +42,7 @@ See [`data/README.md`](data/README.md) for full details and download instruction
 |---|---|
 | Content-based filtering | TF-IDF vectorization (title + author + publisher) + cosine similarity |
 | Collaborative filtering | Matrix factorization via Truncated SVD (mean-centered ratings, 30 latent factors) |
-| Hybrid merge | Min-max normalized weighted sum: `hybrid = alpha * content + (1 - alpha) * collaborative` |
+| Hybrid merge | Min/max normalized weighted sum: `hybrid = alpha * content + (1 - alpha) * collaborative` |
 | Evaluation | RMSE (rating prediction) + Precision@10 / Recall@10 (ranking quality), 80/20 train-test split |
 
 ## Project Structure
@@ -104,7 +104,7 @@ BookNookCorner/
 The hybrid blend (alpha ≈ 0.5–0.75) outperforms both pure strategies on both metrics,
 supporting the case for combining content-based and collaborative signals. Absolute
 scores are modest, which reflects the extreme sparsity of the Book-Crossing dataset
-(99.9%) — a known and documented challenge in the recommender systems literature,
+(99.9%) a known and documented challenge in the recommender systems literature,
 not a defect of the model.
 
 ![Evaluation results](results/evaluation_results.png)
